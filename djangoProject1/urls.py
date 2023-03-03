@@ -18,7 +18,7 @@ from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-from client.views import UserViewSet, AvatarViewSet
+from client.views import UserViewSet, AvatarViewSet,WeatherView
 
 router=SimpleRouter()
 router.register(r'client', UserViewSet)
@@ -26,6 +26,7 @@ router.register(r'avatar', AvatarViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('weather/', WeatherView.as_view()),
     path('api/', include(router.urls)),
     path('api/v1/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
