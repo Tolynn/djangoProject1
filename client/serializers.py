@@ -3,12 +3,14 @@ from django.contrib.auth.hashers import make_password
 from .models import User, AvatarImage
 from rest_framework import serializers
 
-
+class WeatherSerializer(serializers.Serializer):
+    date=serializers.DateField()
+    city=serializers.CharField(max_length=255)
 class AvatarSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    # user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = AvatarImage
-        fields = '__all__'
+        fields = ('user','avatar')
 
 
 class UserSerializer(serializers.ModelSerializer):
